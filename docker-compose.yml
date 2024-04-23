@@ -17,17 +17,51 @@ services:
     restart: unless-stopped
 
   product:
-    image: teambinarymatter/ctse-ms-2:latest
+    image: teambinarymatter/ctse-product:latest
     container_name: product
     labels:
       com.centurylinklabs.watchtower.enable: true
     ports:
       - "5002:5002"
+    environment:
+      - PORT=5002
     env_file:
       - stack.env
     networks:
       payzy-network:
         ipv4_address: 172.20.0.122
+    restart: unless-stopped
+  
+  order:
+    image: teambinarymatter/ctse-order:latest
+    container_name: order
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    ports:
+      - "5003:5003"
+    environment:
+      - PORT=5003
+    env_file:
+      - stack.env
+    networks:
+      payzy-network:
+        ipv4_address: 172.20.0.123
+    restart: unless-stopped
+  
+  review:
+    image: teambinarymatter/ctse-review:latest
+    container_name: review
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    ports:
+      - "5004:5004"
+    environment:
+      - PORT=5004
+    env_file:
+      - stack.env
+    networks:
+      payzy-network:
+        ipv4_address: 172.20.0.124
     restart: unless-stopped
 
   gateway:
@@ -36,7 +70,7 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: true
     depends_on:
-      - user
+      - auth
       - product
     ports:
       - "5000:5000"
