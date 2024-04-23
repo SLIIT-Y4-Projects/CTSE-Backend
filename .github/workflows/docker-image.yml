@@ -6,13 +6,16 @@ on:
     paths:
       - "gateway/**"
       - "auth/**"
+      - "product/**"
+      - "order/**"
+      - "review/**"
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [gateway, auth]
+        service: [gateway, auth, product, order, review]
     steps:
       - uses: actions/checkout@v2
 
