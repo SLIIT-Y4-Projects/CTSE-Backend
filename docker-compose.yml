@@ -72,6 +72,8 @@ services:
     depends_on:
       - auth
       - product
+      - order
+      - review
     ports:
       - "5000:5000"
     networks:
