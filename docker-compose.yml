@@ -1,15 +1,12 @@
 version: "3"
 services:
   user:
-    image: teambinarymatter/ctse-ms1:latest
+    image: teambinarymatter/ctse-ms-1:latest
     container_name: user
     labels:
       com.centurylinklabs.watchtower.enable: true
     ports:
       - "5001:5001"
-    volumes:
-      - .:/app/
-      - /app/user/node_modules
     env_file:
       - stack.env
     networks:
@@ -18,15 +15,12 @@ services:
     restart: unless-stopped
 
   product:
-    image: teambinarymatter/ctse-ms1:latest
+    image: teambinarymatter/ctse-ms-2:latest
     container_name: product
     labels:
       com.centurylinklabs.watchtower.enable: true
     ports:
       - "5002:5002"
-    volumes:
-      - .:/app
-      - /app/product/node_modules
     env_file:
       - stack.env
     networks:
@@ -43,8 +37,18 @@ services:
       - user
       - product
     ports:
-      - 5000:5000
+      - "5000:5000"
     networks:
       payzy-network:
         ipv4_address: 172.20.0.120
     restart: unless-stopped
+
+networks:
+  payzy-network:
+    name: payzy-network
+    external: true
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
