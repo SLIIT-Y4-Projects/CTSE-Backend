@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const PORT = 3001;
+const PORT = 5002;
 
-app.get("/product", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ id: 101, name: "Widget", price: 9.99 });
 });
 

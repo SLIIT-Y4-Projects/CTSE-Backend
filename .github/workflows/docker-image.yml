@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "gateway/**"
       - "ms-1/**"
       - "ms-2/**"
 
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [ms-1, ms-2]
+        service: [gateway, ms-1, ms-2]
     steps:
       - uses: actions/checkout@v2
 
@@ -31,4 +32,4 @@ jobs:
           context: ./${{ matrix.service }}
           file: ./${{ matrix.service }}/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ matrix.service }}:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ctse-${{ matrix.service }}:latest
