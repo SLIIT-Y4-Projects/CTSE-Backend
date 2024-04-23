@@ -14,7 +14,7 @@ RUN yarn
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 5005
+EXPOSE 5006
 
 
 CMD ["nodemon", "server.js"]
