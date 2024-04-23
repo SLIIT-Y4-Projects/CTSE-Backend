@@ -5,15 +5,14 @@ on:
     branches: [main]
     paths:
       - "gateway/**"
-      - "ms-1/**"
-      - "ms-2/**"
+      - "auth/**"
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [gateway, ms-1, ms-2]
+        service: [gateway, auth]
     steps:
       - uses: actions/checkout@v2
 

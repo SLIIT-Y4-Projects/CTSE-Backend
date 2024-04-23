@@ -1,12 +1,14 @@
 version: "3"
 services:
-  user:
-    image: teambinarymatter/ctse-ms-1:latest
-    container_name: user
+  auth:
+    image: teambinarymatter/ctse-auth:latest
+    container_name: auth
     labels:
       com.centurylinklabs.watchtower.enable: true
     ports:
       - "5001:5001"
+    environment:
+      - PORT=5001
     env_file:
       - stack.env
     networks:
