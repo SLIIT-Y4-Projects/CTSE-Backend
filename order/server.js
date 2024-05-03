@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.use("/", orderRoutes);
+app.use("/order", orderRoutes);
 
 // connect to db
 mongoose
