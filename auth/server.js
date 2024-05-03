@@ -17,9 +17,14 @@ app.use(express.json());
 // cors
 app.use(cors());
 
+// Health check
+app.get("/", (req, res) => {
+  res.send("Auth service is up and running");
+});
+
 // Routes
-app.use("/", authRoutes);
-app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/auth/users", userRoutes);
 
 // connect to db
 mongoose

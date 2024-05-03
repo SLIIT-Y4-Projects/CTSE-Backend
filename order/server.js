@@ -17,6 +17,11 @@ app.use(express.json());
 // cors
 app.use(cors());
 
+// Health check
+app.get("/", (req, res) => {
+  res.send("Order service is up and running");
+});
+
 // Routes
 app.use("/order", orderRoutes);
 

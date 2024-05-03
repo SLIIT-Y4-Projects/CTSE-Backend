@@ -16,8 +16,13 @@ app.use(express.json());
 // cors
 app.use(cors());
 
+// Health check
+app.get("/", (req, res) => {
+  res.send("Product service is up and running");
+});
+
 // Routes
-app.use("/", productRoutes);
+app.use("/product", productRoutes);
 
 // connect to db
 mongoose

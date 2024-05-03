@@ -17,8 +17,13 @@ app.use(express.json());
 // cors
 app.use(cors());
 
+// Health check
+app.get("/", (req, res) => {
+  res.send("Review service is up and running");
+});
+
 // Routes
-app.use("/", reviewRoutes);
+app.use("/review", reviewRoutes);
 
 // connect to db
 mongoose
