@@ -1,5 +1,5 @@
 # Specify the base image
-FROM node:lts-alpine
+FROM node:20.14.0-alpine3.20
 
 # Set the working directory inside the container
 WORKDIR /app
